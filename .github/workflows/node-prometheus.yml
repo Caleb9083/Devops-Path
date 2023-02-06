@@ -1,4 +1,4 @@
-name: CI
+name: node-prometheus CI
 
 on:
   push:
