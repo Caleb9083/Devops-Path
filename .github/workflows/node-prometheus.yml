@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    - name: testing node-prometheus application
-      run: echo ${{github.event}}
-      run: echo Node Prometheus Working!...
-
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing node-prometheus application
+          run: echo "Node Prometheus Working!..."
