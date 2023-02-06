@@ -18,7 +18,7 @@ jobs:
         name: Build & push Docker image
         with:
           image: caleb9083/node-prometheus
-          tags: v1, latest
+          tags: latest
           registry: docker.io
           dockerfile: ./node-prometheus/Dockerfile
           directory: ./node-prometheus/
