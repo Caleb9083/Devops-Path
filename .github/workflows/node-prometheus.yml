@@ -2,11 +2,11 @@ name: CI
 
 on:
   push:
-    branch: [node-prometheus]
+    branches: [node-prometheus]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: testing node-prometheus application
-          run: echo "Node Prometheus Working!..."
+      - name: testing node-prometheus application 
+        run: echo "Node Prometheus Working!..."
