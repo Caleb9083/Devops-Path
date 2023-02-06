@@ -1,0 +1,25 @@
+version: '3.x'
+
+services:
+  node-prometheus:
+    image: node-prometheus
+    build:
+      context: ./node-prometheus/
+    ports:
+      - "8080:8080"
+  
+  tic-tac-toe:
+    image: tic-tac-toe
+    build:
+      context: ./tic-tac-toe/
+    ports:
+      - "3000:3000"
+  
+  polls-app:
+    image: polls-app
+    build:
+      context: ./polls-app/
+    ports:
+      - "8000:8000"
+  
+    
