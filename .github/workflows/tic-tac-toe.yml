@@ -1,0 +1,26 @@
+name: tic-tac-toe CI
+
+on:
+  push:
+    branches: [tic-tac-toe]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing tic-tac-toe application
+        run: echo "Tic-tac-toe Working!..."
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: caleb9083/tic-tac-toe
+          tags: latest
+          registry: docker.io
+          dockerfile: ./tic-tac-toe/Dockerfile
+          directory: ./tic-tac-toe/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
