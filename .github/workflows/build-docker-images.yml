@@ -1,0 +1,68 @@
+name: Build and push docker images
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ndoe-prometheus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing node-prometheus application
+        run: echo "Node Prometheus Working!..."
+
+      - uses: actions/checkout@v2
+        name: Check out code
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: caleb9083/node-prometheus
+          tags: latest
+          registry: docker.io
+          dockerfile: ./node-prometheus/Dockerfile
+          directory: ./node-prometheus/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  tic-tac-toe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing tic-tac-toe application
+        run: echo "Tic-tac-toe Working!..."
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: caleb9083/tic-tac-toe
+          tags: latest
+          registry: docker.io
+          dockerfile: ./tic-tac-toe/Dockerfile
+          directory: ./tic-tac-toe/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  polls-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing tic-tac-toe application
+        run: echo "Polls-app Working!..."
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: caleb9083/polls-app
+          tags: latest
+          registry: docker.io
+          dockerfile: ./polls-app/Dockerfile
+          directory: ./polls-app/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
