@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  ndoe-prometheus:
+  node-prometheus:
     runs-on: ubuntu-latest
     steps:
       - name: testing node-prometheus application
