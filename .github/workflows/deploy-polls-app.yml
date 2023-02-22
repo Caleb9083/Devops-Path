@@ -1,0 +1,39 @@
+name: Polls-app CI/CD
+
+on:
+  push:
+    branches: [deploy]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing tic-tac-toe application
+        run: echo "Polls-app Working!..."
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: caleb9083/polls-app
+          tags: latest
+          registry: docker.io
+          dockerfile: ./polls-app/Dockerfile
+          directory: ./polls-app/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps: 
+      - name: Pulling the latest version of Image
+        run: sudo docker pull caleb9083/polls-app
+      
+      - name: Take down previous container
+        run: sudo docker rm -f polls-app
+
+      - name: Create container
+        run: sudo docker run -d -p 8000:8000 --name polls-app caleb9083/polls-app
+            

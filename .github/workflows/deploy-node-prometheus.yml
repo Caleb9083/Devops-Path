@@ -2,7 +2,7 @@ name: node-prometheus CI/CD
 
 on:
   push:
-    branches: [deploy-node-prometheus]
+    branches: [deploy]
 
 jobs:
   build:
@@ -36,5 +36,5 @@ jobs:
         run: sudo docker rm -f node-prometheus
 
       - name: Create container
-        run: sudo docker run -d -p 3000:3000 --name node-prometheus caleb9083/node-prometheus
+        run: sudo docker run -d -p 8080:8080 --name node-prometheus caleb9083/node-prometheus
             
