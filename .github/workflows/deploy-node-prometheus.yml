@@ -1,0 +1,40 @@
+name: node-prometheus CI/CD
+
+on:
+  push:
+    branches: [deploy-node-prometheus]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing node-prometheus application
+        run: echo "Node Prometheus Working!..."
+
+      - uses: actions/checkout@v2
+        name: Check out code
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: caleb9083/node-prometheus
+          tags: latest
+          registry: docker.io
+          dockerfile: ./node-prometheus/Dockerfile
+          directory: ./node-prometheus/
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps: 
+      - name: Pulling the latest version of Image
+        run: docker pull caleb9083/node-prometheus
+      
+      - name: Take down previous container
+        run: docker rm -f node-prometheus
+
+      - name: Create container
+        run: docker run -d -p 3000:3000 --name node-prometheus caleb9083/node-prometheus
+            
