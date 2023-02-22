@@ -30,11 +30,11 @@ jobs:
     runs-on: self-hosted
     steps: 
       - name: Pulling the latest version of Image
-        run: docker pull caleb9083/node-prometheus
+        run: sudo docker pull caleb9083/node-prometheus
       
       - name: Take down previous container
-        run: docker rm -f node-prometheus
+        run: sudo docker rm -f node-prometheus
 
       - name: Create container
-        run: docker run -d -p 3000:3000 --name node-prometheus caleb9083/node-prometheus
+        run: sudo docker run -d -p 3000:3000 --name node-prometheus caleb9083/node-prometheus
             
