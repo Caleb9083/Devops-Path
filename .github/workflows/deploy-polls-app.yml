@@ -28,14 +28,15 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps: 
+      - name: Take down previous container
+        run: sudo docker rm -f polls-app
+        
       - name: Remove previous Image
         run: sudo docker rmi caleb9083/polls-app
         
       - name: Pulling the latest version of Image
         run: sudo docker pull caleb9083/polls-app
       
-      - name: Take down previous container
-        run: sudo docker rm -f polls-app
 
       - name: Create container
         run: sudo docker run -d -p 8000:8000 --name polls-app caleb9083/polls-app

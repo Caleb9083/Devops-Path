@@ -29,14 +29,15 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps: 
+      - name: Take down previous container
+        run: sudo docker rm -f tic-tac-toe
+        
       - name: Remove previous Image
         run: sudo docker rmi caleb9083/tic-tac-toe
         
       - name: Pulling the latest version of Image
         run: sudo docker pull caleb9083/tic-tac-toe
       
-      - name: Take down previous container
-        run: sudo docker rm -f tic-tac-toe
 
       - name: Create container
         run: sudo docker run -d -p 3000:3000 --name tic-tac-toe caleb9083/tic-tac-toe

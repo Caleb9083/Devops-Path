@@ -29,14 +29,15 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps: 
+      - name: Take down previous container
+        run: sudo docker rm -f node-prometheus
+        
       - name: Remove previous Image
         run: sudo docker rmi caleb9083/node-prometheus
         
       - name: Pulling the latest version of Image
         run: sudo docker pull caleb9083/node-prometheus
       
-      - name: Take down previous container
-        run: sudo docker rm -f node-prometheus
 
       - name: Create container
         run: sudo docker run -d -p 8080:8080 --name node-prometheus caleb9083/node-prometheus
