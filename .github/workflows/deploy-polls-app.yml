@@ -28,6 +28,9 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps: 
+      - name: Remove previous Image
+        run: sudo docker rmi caleb9083/polls-app
+        
       - name: Pulling the latest version of Image
         run: sudo docker pull caleb9083/polls-app
       
