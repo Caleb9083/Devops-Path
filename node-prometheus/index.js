@@ -18,7 +18,7 @@ collectDefaultMetrics()
 }
 
 app.get('/', function (req, res) {
-    res.send(`P R O M E T H E U S`)
+    res.send(`P R O M E T H E U S!!!!!!!!!!!!!`)
 });
 
 startMetricsServer()
