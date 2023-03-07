@@ -1,5 +1,6 @@
 const express = require('express')
 const client = require('prom-client')
+const os = require('os')
 
 const app = express()
 
@@ -18,7 +19,7 @@ collectDefaultMetrics()
 }
 
 app.get('/', function (req, res) {
-    res.send(`P R O M E T H E U S!!!!!!!!!!!!!`)
+    res.send(`P R O M E T H E U S!, from ${os.hostname()}`)
 });
 
 startMetricsServer()
