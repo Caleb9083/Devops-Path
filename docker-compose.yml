@@ -20,6 +20,6 @@ services:
     build:
       context: ./polls-app/
     ports:
-      - "8000:8000"
+      - "8001:8000"
   
     
